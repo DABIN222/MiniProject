@@ -1,0 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<div class="bottom">
+	<br>
+	고객센터 1588-1588<br>
+	상담가능시간 10:00-17:30
+</div>
+</body>
+</html>

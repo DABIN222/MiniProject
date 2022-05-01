@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.campus.myapp.dao.storeDAO">
+	<insert id="storeInsert">
+		INSERT INTO mapboard(subject, content1, content2, time, address, userid) 
+		VALUES(#{subject},#{content1},#{content2},#{time},#{address},#{userid})
+	</insert>
+	<select id="storeList" resultType="com.campus.myapp.vo.storeVO">
+		select no, subject, userid, date_format(writedate,'%m-%d %H:%i') writedate
+		from mapboard
+		<if test='searchWord != null'>
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+		order by no desc
+		limit ${onePageRecord} offset ${offsetIndex}
+	</select>
+	<select id="totalRecord" resultType="int">
+		select count(no) cnt from mapboard
+		<if test='searchWord != null'>
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+	</select>
+	<select id="storeSelect" resultType="com.campus.myapp.vo.storeVO">
+		select no, subject, content1, content2, time, address, userid, writedate
+		from mapboard where no=#{param1}
+	</select>
+	<update id="storeUpdate">
+		update mapboard set subject=#{subject}, address=#{address}, time=#{time}, 
+		content1=#{content1}, content2=#{content2} where no=#{no} and userid=#{userid}
+	</update>
+	<delete id="storeDelete">
+		delete from mapboard where no=#{param1} and userid=#{param2}
+	</delete>
+	<delete id="storeMultiDelete">
+		delete from mapboard
+		<where>
+			<foreach item="item" collection="noList" open="no in (" separator="," close=")">
+				#{item}
+			</foreach>
+			and userid=#{userid}
+		</where>
+	</delete>
+</mapper>

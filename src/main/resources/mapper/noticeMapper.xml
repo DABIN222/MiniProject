@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.campus.myapp.dao.NoticeDAO">
+	<insert id="NoticeInsert">
+		INSERT INTO noticeboard(subject, content, userid, ip) 
+		VALUES(#{subject},#{content},#{userid},#{ip})
+	</insert>
+	<select id="NoticeList" resultType="com.campus.myapp.vo.NoticeVO">
+		select no, subject, userid, hit, date_format(writedate,'%m-%d %H:%i') writedate
+		from noticeboard
+		<if test='searchWord != null'>
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+		order by no desc
+		limit ${onePageRecord} offset ${offsetIndex}
+	</select>
+	<select id="totalRecord" resultType="int">
+		select count(no) cnt from noticeboard
+		<if test='searchWord != null'>
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+	</select>
+	<select id="NoticeSelect" resultType="com.campus.myapp.vo.NoticeVO">
+		select no, subject, content, userid, hit, writedate
+		from noticeboard where no=#{param1}
+	</select>
+	<update id="hitCount">
+		update noticeboard set hit = hit+1 where no=#{param1}
+	</update>
+	<update id="NoticeUpdate">
+		update noticeboard set subject=#{subject}, content=#{content} where no=${no} and userid=#{userid}
+	</update>
+	<delete id="NoticeDelete">
+		delete from noticeboard where no=#{param1} and userid=#{param2}
+	</delete>
+	<delete id="NoticeMultiDelete">
+		delete from noticeboard
+		<where>
+			<foreach item="item" collection="noList" open="no in (" separator="," close=")">
+				#{item}
+			</foreach>
+			and userid=#{userid}
+		</where>
+	</delete>
+</mapper>

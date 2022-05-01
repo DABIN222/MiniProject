@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+body{
+	background-image:url("../img/프로젝트배경.jpg");
+	width:100%;
+}
+body, ul, li{margin: 0; padding: 0; list-style-type: none;}
+
+.mainMenu a:link, .mainMenu a:visited{
+	text-decoration:none;
+	color:#222;
+}
+.logo a:link, .logo a:visited{
+	text-decoration:none;
+	color:black;
+}
+#logouttext a:link, #logouttext a:visited{
+	text-decoration:none;
+	color:black;
+}
+/* 마우스 올리면 */
+.mainMenu a:hover{
+	text-decoration:none; 
+	color:#222;
+	font-weight:bold;
+}
+
+#login1{
+	position:absolute;
+	right:10%; top:20px;
+}
+.bottom{
+	background-color: rgb(196, 196, 196);
+	width: 100%;
+	color: white;
+	margin: 0 auto;
+	text-align: center;
+	height: 100px;
+	line-height:25px;
+}
+
+.logo{
+	text-align: center;
+	font-weight:bold;
+	font-size: 3em;
+	height: 100px;
+	line-height: 100px;
+}
+
+.mainMenu  {
+	width: 100%;
+	padding: 0px;
+	margin: 0auto;
+	height: 50px;
+	background: beige;
+	}
+	
+.mainMenu li{
+	font-size: 1.3em;
+	color:#ddd;
+	width:20%;
+	float: left;
+	text-align: center;
+	line-height: 50px;
+}
+
+/* 상단이미지 */
+.top1 {
+	margin:  auto;
+}
+
+.carousel-inner img {
+	width: 100%;
+	padding:0px;
+	margin: 0 auto;
+	height: 800px;
+}
+
+.carousel-control-prev {
+	width: 20px;
+} /*화살표 끝으로 옮기기*/
+.carousel-control-next {
+	width: 20px;
+}
+
+.loginForm {
+	width:1000px;
+	margin:0 auto;
+	overflow:auto;
+}
+/*로그인 폼*/
+#logfrm{
+	height:300px;
+}	
+
+#mFrm{
+	height:300px;
+}
+
+.memberEditFrm{
+	padding:50px;
+}
+.boardlistFrm{
+	padding:50px;
+}
+.boardWriteFrm{
+	padding:50px;
+}
+.boardviewFrm{
+	padding:50px;
+}
+#boardviewcontent{
+	min-height:400px;
+	height:100%;
+}
+.boardeditFrm{
+	padding:50px;
+}
+
+
+ 	
